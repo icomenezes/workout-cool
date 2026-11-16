@@ -7,7 +7,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import type { PropsWithChildren } from "react";
 
-import { AnalyticsProvider } from "@/shared/lib/analytics/client";
 import { DialogRenderer } from "@/features/dialogs-provider/DialogProvider";
 import { useAutoLocale } from "@/entities/user/model/use-auto-locale";
 import { ToastSonner } from "@/components/ui/ToastSonner";
@@ -25,7 +24,6 @@ function LocaleDetector() {
 export const Providers = ({ children, locale }: PropsWithChildren<{ locale: string }>) => {
   return (
     <>
-      <AnalyticsProvider />
       <NuqsAdapter>
         <QueryClientProvider client={queryClient}>
           <I18nProviderClient locale={locale}>

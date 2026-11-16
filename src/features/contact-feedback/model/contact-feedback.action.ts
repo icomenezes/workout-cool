@@ -23,7 +23,6 @@ export const contactFeedbackAction = actionClient.schema(ContactFeedbackSchema).
   });
 
   await sendEmail({
-    from: SiteConfig.email.from,
     to: SiteConfig.email.contact,
     subject: `New feedback from ${email}`,
     text: `Review: ${feedback.review}\n\nMessage: ${feedback.message}`,

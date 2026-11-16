@@ -11,7 +11,6 @@ import { actionClient } from "@/shared/api/safe-actions";
 
 export const sponsorOnboardingAction = actionClient.schema(SponsorOnboardingSchema).action(async ({ parsedInput }) => {
   await sendEmail({
-    from: SiteConfig.email.from,
     to: SiteConfig.email.contact,
     subject: `New Sponsor: ${parsedInput.brandName}`,
     text: `New sponsor onboarding: ${parsedInput.brandName} (${parsedInput.email}) - ${parsedInput.websiteUrl}`,

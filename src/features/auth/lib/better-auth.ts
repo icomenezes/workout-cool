@@ -8,12 +8,11 @@ import { ResetPasswordEmail } from "@emails/ResetPasswordEmail";
 
 import { prisma } from "@/shared/lib/prisma";
 import { sendEmail } from "@/shared/lib/mail/sendEmail";
-import { hashStringWithSalt } from "@/features/update-password/lib/hash";
 import { env } from "@/env";
 
 export const auth = betterAuth({
-  // trustedOrigins: [SiteConfig.prodUrl, "localhost:3000", "https://better-auth.com", "http://localhost:3000"],
-  trustedOrigins: ["*", "workoutcool://", "expo://"],
+  // Only our own origin may call the auth endpoints (the upstream "*" disabled CSRF origin checks).
+  trustedOrigins: [env.BETTER_AUTH_URL, env.NEXT_PUBLIC_APP_URL],
   plugins: [
     admin(),
     customSession(async ({ user, session }) => {
@@ -110,16 +109,6 @@ export const auth = betterAuth({
         text: `Click the link to reset your password: ${url}`,
         react: ResetPasswordEmail({ url }),
       });
-    },
-    password: {
-      hash: async (password: string) => {
-        const hashedPassword = hashStringWithSalt(password, env.BETTER_AUTH_SECRET);
-        return hashedPassword;
-      },
-      verify: async ({ password, hash }) => {
-        const hashedPassword = hashStringWithSalt(password, env.BETTER_AUTH_SECRET);
-        return hashedPassword === hash;
-      },
     },
     enabled: true,
   },

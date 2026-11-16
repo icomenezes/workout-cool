@@ -1,14 +1,14 @@
 "use server";
 
 
+import { hashPassword, verifyPassword } from "better-auth/crypto";
+
 import { prisma } from "@/shared/lib/prisma";
 import { ERROR_MESSAGES } from "@/shared/constants/errors";
 import { ActionError } from "@/shared/api/safe-actions";
 import { mobileAuthenticatedActionClient } from "@/shared/api/mobile-safe-actions";
 import { UpdatePasswordSchema } from "@/features/update-password/model/update-password.schema";
 import { validatePassword } from "@/features/update-password/lib/validate-password";
-import { hashStringWithSalt } from "@/features/update-password/lib/hash";
-import { env } from "@/env";
 
 /**
  * Core password update logic that can be used by both the action and API route
@@ -28,9 +28,7 @@ export async function updateUserPassword(
     select: { password: true, id: true },
   });
 
-  const hashedCurrentPassword = hashStringWithSalt(currentPassword, env.BETTER_AUTH_SECRET);
-
-  if (hashedCurrentPassword !== password) {
+  if (!password || !(await verifyPassword({ hash: password, password: currentPassword }))) {
     throw new ActionError(ERROR_MESSAGES.INVALID_CURRENT_PASSWORD);
   }
 
@@ -50,7 +48,7 @@ export async function updateUserPassword(
             userId,
           },
           data: {
-            password: hashStringWithSalt(newPassword, env.BETTER_AUTH_SECRET),
+            password: await hashPassword(newPassword),
           },
         },
       },

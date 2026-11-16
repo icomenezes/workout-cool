@@ -14,13 +14,11 @@ import { getLocalizedMetadata } from "@/shared/config/localized-metadata";
 import { WorkoutSessionsSynchronizer } from "@/features/workout-session/ui/workout-sessions-synchronizer";
 import { FavoriteExercisesSynchronizer } from "@/features/workout-builder/model/favorite-exercises-synchronizer";
 import { ThemeSynchronizer } from "@/features/theme/ui/ThemeSynchronizer";
-import { env } from "@/env";
 import { Version } from "@/components/version";
 import { TailwindIndicator } from "@/components/utils/TailwindIndicator";
 import { NextTopLoader } from "@/components/ui/next-top-loader";
 import { ServiceWorkerRegistration } from "@/components/pwa/ServiceWorkerRegistration";
-import { AdScripts } from "@/components/ads/AdScripts";
-import { VerticalLeftBanner, VerticalRightBanner, AdBlockerForPremium } from "@/components/ads";
+import { VerticalLeftBanner, VerticalRightBanner } from "@/components/ads";
 
 import "@/shared/styles/globals.css";
 
@@ -247,7 +245,6 @@ export default async function RootLayout({ params, children }: RootLayoutProps) 
         <head>
           <meta charSet="UTF-8" />
           <meta content="width=device-width, initial-scale=1, maximum-scale=1 viewport-fit=cover" name="viewport" />
-          <AdScripts />
 
           {/* PWA Meta Tags */}
           <meta content="yes" name="apple-mobile-web-app-capable" />
@@ -274,28 +271,6 @@ export default async function RootLayout({ params, children }: RootLayoutProps) 
           {/* Theme color for PWA */}
           <meta content="#FF5722" name="theme-color" />
 
-          {/* Impact site verification */}
-          {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-          {/* @ts-ignore */}
-          <meta name="impact-site-verification" value="e6afc3fc-0dcd-4625-a8cd-282991d40164" />
-
-          {/* Google Analytics 4 */}
-          {env.NEXT_PUBLIC_GA4_MEASUREMENT_ID && (
-            <>
-              <script async src={`https://www.googletagmanager.com/gtag/js?id=${env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}`} />
-              <script
-                dangerouslySetInnerHTML={{
-                  __html: `
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', '${env.NEXT_PUBLIC_GA4_MEASUREMENT_ID}');
-                  `,
-                }}
-              />
-            </>
-          )}
-
           {/* Structured Data */}
           <StructuredDataScript data={websiteStructuredData} />
           <StructuredDataScript data={organizationStructuredData} />
@@ -318,8 +293,6 @@ export default async function RootLayout({ params, children }: RootLayoutProps) 
             <FavoriteExercisesSynchronizer />
             <WorkoutSessionsSynchronizer />
             <ThemeSynchronizer />
-            {/* <AdSenseAutoAds /> */}
-            <AdBlockerForPremium />
             <NextTopLoader color="#FF5722" delay={100} showSpinner={false} />
 
             <div className="flex items-center justify-center min-h-screen w-full max-sm:min-h-full">

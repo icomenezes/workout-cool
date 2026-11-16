@@ -25,6 +25,11 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendEmail = async ({ from, to, subject, text, react }: EmailPayload) => {
+  if (!to) {
+    console.warn(`[sendEmail] no recipient, email "${subject}" not sent`);
+    return;
+  }
+
   try {
     return transporter.sendMail({
       from: from ?? env.SMTP_FROM,

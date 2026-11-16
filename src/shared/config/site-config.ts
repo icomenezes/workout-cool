@@ -25,8 +25,8 @@ export const SiteConfig = {
     primary: "#007291",
   },
   email: {
-    from: "Workout Cool <hello@workout.cool>",
-    contact: "hello@workout.cool",
+    // Destination of contact / feedback / sponsor forms. Empty = forms are saved (when applicable) but no email is sent.
+    contact: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "",
   },
   maker: {
     image: "https://workout.cool/images/me/twitter-en.jpg",

@@ -1,8 +1,10 @@
 services:
   postgres:
     image: postgres:15
+    restart: unless-stopped
+    # Only reachable from the server itself (Docker-published ports bypass UFW, so never use 0.0.0.0 here).
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "127.0.0.1:${DB_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -16,8 +18,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      # NEXT_PUBLIC_* values are inlined at build time, so they must be passed here (not only at runtime).
+      args:
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+        NEXT_PUBLIC_CONTACT_EMAIL: ${NEXT_PUBLIC_CONTACT_EMAIL:-}
+    restart: unless-stopped
+    # Exposed to localhost only; the public entry point is the Apache reverse proxy (HTTPS).
     ports:
-      - "${APP_PORT:-3000}:3000"
+      - "127.0.0.1:${APP_PORT:-3000}:3000"
     depends_on:
       postgres:
         condition: service_healthy

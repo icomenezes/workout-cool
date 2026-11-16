@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSessionCookie } from "better-auth/cookies";
 
 import { resolveDownloadRedirect } from "@/shared/lib/stores/download-redirect";
-import { trackFromProxy } from "@/shared/lib/analytics/proxy";
 
 function detectUserLocale(request: NextRequest): string {
   const acceptLanguage = request.headers.get("accept-language");
@@ -62,8 +61,6 @@ export async function proxy(request: NextRequest) {
   });
 
   if (storeRedirect) {
-    trackFromProxy({ event: "download_redirect", store: storeRedirect.platform, source: storeRedirect.source, forced: storeRedirect.forced });
-
     return NextResponse.redirect(storeRedirect.url, 307);
   }
   const detectedLocale = detectUserLocale(request);

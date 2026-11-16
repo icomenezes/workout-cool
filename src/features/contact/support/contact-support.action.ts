@@ -11,7 +11,6 @@ import { actionClient } from "@/shared/api/safe-actions";
 
 export const contactSupportAction = actionClient.schema(ContactSupportSchema).action(async ({ parsedInput }) => {
   await sendEmail({
-    from: SiteConfig.email.from,
     to: SiteConfig.email.contact,
     subject: `Support needed from ${parsedInput.email} - ${parsedInput.subject}`,
     text: parsedInput.message,

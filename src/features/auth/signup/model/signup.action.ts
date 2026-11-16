@@ -3,12 +3,9 @@
 import { getI18n } from "locales/server";
 import { UserRole } from "@prisma/client";
 
-import { setupAnalytics } from "@/shared/lib/analytics/server";
-import { LogEvents } from "@/shared/lib/analytics/events";
 import { ActionError, actionClient } from "@/shared/api/safe-actions";
 import { signUpSchema } from "@/features/auth/signup/schema/signup.schema";
 import { auth } from "@/features/auth/lib/better-auth";
-import { env } from "@/env";
 
 export const signUpAction = actionClient.schema(signUpSchema).action(async ({ parsedInput }) => {
   const t = await getI18n();
@@ -24,19 +21,6 @@ export const signUpAction = actionClient.schema(signUpSchema).action(async ({ pa
         lastName: parsedInput.lastName,
       },
     });
-
-    if (env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID) {
-      const analytics = await setupAnalytics({
-        userId: user.user.id,
-        fullName: `${parsedInput.firstName} ${parsedInput.lastName}`,
-        email: parsedInput.email,
-      });
-
-      analytics.track({
-        event: LogEvents.Registered.name,
-        channel: LogEvents.Registered.channel,
-      });
-    }
 
     return user;
   } catch (error) {

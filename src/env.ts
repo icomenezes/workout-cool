@@ -16,7 +16,6 @@ export const env = createEnv({
     GOOGLE_CLIENT_SECRET: z.string().min(1),
     NODE_ENV: z.enum(["development", "production", "test"]),
     BETTER_AUTH_SECRET: z.string().min(1),
-    OPENPANEL_SECRET_KEY: z.string().optional(),
     SMTP_HOST: z.string().optional(),
     SMTP_PORT: z.coerce.number().positive().optional(),
     SMTP_USER: z.string().optional(),
@@ -40,7 +39,6 @@ export const env = createEnv({
    * `experimental__runtimeEnv` as well.
    */
   client: {
-    NEXT_PUBLIC_OPENPANEL_CLIENT_ID: z.string().optional(),
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().optional(),
     NEXT_PUBLIC_APP_URL: z.string().url(),
     NEXT_PUBLIC_STRIPE_PRICE_MONTHLY_EU: z.string().optional(),
@@ -124,12 +122,9 @@ export const env = createEnv({
     NEXT_PUBLIC_EZOIC_BOTTOM_BMI_PLACEMENT_ID: z.string().optional(),
     NEXT_PUBLIC_EZOIC_TOP_TOOLS_PLACEMENT_ID: z.string().optional(),
     NEXT_PUBLIC_EZOIC_BOTTOM_TOOLS_PLACEMENT_ID: z.string().optional(),
-    // GA4
-    NEXT_PUBLIC_GA4_MEASUREMENT_ID: z.string().optional(),
   },
 
   experimental__runtimeEnv: {
-    NEXT_PUBLIC_OPENPANEL_CLIENT_ID: process.env.NEXT_PUBLIC_OPENPANEL_CLIENT_ID,
     NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_STRIPE_PRICE_MONTHLY_EU: process.env.NEXT_PUBLIC_STRIPE_PRICE_MONTHLY_EU,
@@ -212,6 +207,5 @@ export const env = createEnv({
     NEXT_PUBLIC_EZOIC_BOTTOM_BMI_PLACEMENT_ID: process.env.NEXT_PUBLIC_EZOIC_BOTTOM_BMI_PLACEMENT_ID,
     NEXT_PUBLIC_EZOIC_TOP_TOOLS_PLACEMENT_ID: process.env.NEXT_PUBLIC_EZOIC_TOP_TOOLS_PLACEMENT_ID,
     NEXT_PUBLIC_EZOIC_BOTTOM_TOOLS_PLACEMENT_ID: process.env.NEXT_PUBLIC_EZOIC_BOTTOM_TOOLS_PLACEMENT_ID,
-    NEXT_PUBLIC_GA4_MEASUREMENT_ID: process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID,
   },
 });

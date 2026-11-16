@@ -87,8 +87,6 @@ jobs:
           GOOGLE_CLIENT_SECRET: test_client_secret
           RESEND_API_KEY: re_test_key
           BETTER_AUTH_SECRET: test_secret_key_32_chars_minimum
-          OPENPANEL_SECRET_KEY: test_secret
-          NEXT_PUBLIC_OPENPANEL_CLIENT_ID: test_client_id
           NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: test_client_id
           NEXT_PUBLIC_STRIPE_PRICE_MONTHLY_EU: test_price_monthly
           NEXT_PUBLIC_STRIPE_PRICE_YEARLY_EU: test_price_yearly

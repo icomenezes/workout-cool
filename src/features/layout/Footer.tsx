@@ -4,6 +4,7 @@ import { TFunction } from "locales/client";
 
 import { cn } from "@/shared/lib/utils";
 import { paths } from "@/shared/constants/paths";
+import { SiteConfig } from "@/shared/config/site-config";
 import { WorkoutSessionTimer } from "@/features/workout-session/ui/workout-session-timer";
 import UserLeaderboardPosition from "@/features/leaderboard/ui/user-leaderboard-position";
 import { Link } from "@/components/ui/link";
@@ -20,11 +21,15 @@ const SOCIAL_LINKS = [
     icon: Twitter,
     label: "Twitter/X",
   },
-  {
-    href: "mailto:coolworkout6@gmail.com",
-    icon: Mail,
-    label: "Email",
-  },
+  ...(SiteConfig.email.contact
+    ? [
+        {
+          href: `mailto:${SiteConfig.email.contact}`,
+          icon: Mail,
+          label: "Email",
+        },
+      ]
+    : []),
   {
     href: "https://discord.gg/NtrsUBuHUB",
     icon: DiscordSvg,

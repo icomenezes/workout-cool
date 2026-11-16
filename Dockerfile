@@ -1,7 +1,8 @@
 FROM node:20-alpine AS base
 
 WORKDIR /app
-RUN npm install -g pnpm
+# Same major version as pnpm-lock.yaml (lockfileVersion 9)
+RUN npm install -g pnpm@9
 
 # Install dependencies
 FROM base AS deps
@@ -15,6 +16,12 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY --from=deps /app/prisma ./prisma
 COPY . .
 COPY .env.example .env
+
+# NEXT_PUBLIC_* are inlined into the bundle by `next build`; real env vars take precedence over the .env copied above.
+ARG NEXT_PUBLIC_APP_URL=http://localhost:3000
+ARG NEXT_PUBLIC_CONTACT_EMAIL=
+ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
+ENV NEXT_PUBLIC_CONTACT_EMAIL=$NEXT_PUBLIC_CONTACT_EMAIL
 
 RUN pnpm run build
 
