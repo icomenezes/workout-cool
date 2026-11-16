@@ -1665,6 +1665,14 @@ export default {
         label: "Disques",
         description: "Exercices utilisant des disques de poids",
       },
+      machine: {
+        label: "Machine",
+        description: "Machines de musculation à charge guidée",
+      },
+      cable: {
+        label: "Poulie",
+        description: "Exercices à la poulie",
+      },
       pullup_bar: {
         label: "Barre de traction",
         description: "Exercices du haut du corps avec barre de traction",

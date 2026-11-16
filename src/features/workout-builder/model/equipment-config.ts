@@ -1,8 +1,10 @@
 
 import PullupBar from "@public/images/equipment/pull-up-bar.png";
 import Plate from "@public/images/equipment/plate.png";
+import Machine from "@public/images/equipment/machine.png";
 import Kettlebell from "@public/images/equipment/kettlebell.png";
 import Dumbbell from "@public/images/equipment/dumbbell.png";
+import Cable from "@public/images/equipment/cable.png";
 import Bodyweight from "@public/images/equipment/bodyweight.png";
 import Bench from "@public/images/equipment/bench.png";
 import Barbell from "@public/images/equipment/barbell.png";
@@ -31,6 +33,20 @@ export const EQUIPMENT_CONFIG: EquipmentItem[] = [
     label: "Barbell",
     icon: Barbell,
     description: "Compound movements with a barbell",
+    className: "h-12 w-12",
+  },
+  {
+    value: ExerciseAttributeValueEnum.MACHINE,
+    label: "Machine",
+    icon: Machine,
+    description: "Gym machines with a weight stack",
+    className: "h-12 w-12",
+  },
+  {
+    value: ExerciseAttributeValueEnum.CABLE,
+    label: "Cable",
+    icon: Cable,
+    description: "Cable / pulley station exercises",
     className: "h-12 w-12",
   },
   {

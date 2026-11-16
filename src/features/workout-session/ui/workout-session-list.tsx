@@ -150,7 +150,7 @@ export function WorkoutSessionList() {
               </div>
               <div className="flex flex-wrap gap-2 flex-1">
                 {session.exercises?.map((ex, idx) => {
-                  const exerciseName = locale === "fr" ? ex.name : ex.nameEn;
+                  const exerciseName = locale !== "en" ? ex.name : ex.nameEn;
                   return (
                     <span
                       className={`inline-block border rounded-full px-1 text-xs font-semibold ${BADGE_COLORS[idx % BADGE_COLORS.length]}`}

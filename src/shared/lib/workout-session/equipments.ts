@@ -7,6 +7,8 @@ export const allEquipmentValues = [
   ExerciseAttributeValueEnum.BARBELL,
   ExerciseAttributeValueEnum.KETTLEBELLS,
   ExerciseAttributeValueEnum.BANDS,
+  ExerciseAttributeValueEnum.MACHINE,
+  ExerciseAttributeValueEnum.CABLE,
 ];
 
 export const getEquipmentTranslation = (value: ExerciseAttributeValueEnum, t: TFunction) => {
@@ -19,6 +21,8 @@ export const getEquipmentTranslation = (value: ExerciseAttributeValueEnum, t: TF
     [ExerciseAttributeValueEnum.WEIGHT_PLATE]: "plate",
     [ExerciseAttributeValueEnum.PULLUP_BAR]: "pullup_bar",
     [ExerciseAttributeValueEnum.BENCH]: "bench",
+    [ExerciseAttributeValueEnum.MACHINE]: "machine",
+    [ExerciseAttributeValueEnum.CABLE]: "cable",
   };
 
   const key = equipmentKeys[value];

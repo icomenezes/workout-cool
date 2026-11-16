@@ -1639,6 +1639,14 @@ export default {
         label: "Plate",
         description: "Exercises using weight plates",
       },
+      machine: {
+        label: "Machine",
+        description: "Gym machines with a weight stack",
+      },
+      cable: {
+        label: "Cable",
+        description: "Cable / pulley station exercises",
+      },
       pullup_bar: {
         label: "Pull-up bar",
         description: "Upper body exercises with a pull-up bar",

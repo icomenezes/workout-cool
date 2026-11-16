@@ -27,7 +27,7 @@ const MUSCLE_CONFIGS: Record<string, string> = {
  */
 export function ExerciseListItemOverlay({ exercise, muscle }: { exercise: ExerciseWithAttributes; muscle: string }) {
   const locale = useCurrentLocale();
-  const exerciseName = locale === "fr" ? exercise.name : exercise.nameEn;
+  const exerciseName = locale !== "en" ? exercise.name : exercise.nameEn;
   const muscleColor = MUSCLE_CONFIGS[muscle] || "bg-gray-500";
 
   return (
@@ -96,7 +96,7 @@ export const ExerciseListItem = React.memo(function ExerciseListItem({
   // When this item is being dragged, it becomes a ghost placeholder
   const isGhost = isDragging;
 
-  const exerciseName = locale === "fr" ? exercise.name : exercise.nameEn;
+  const exerciseName = locale !== "en" ? exercise.name : exercise.nameEn;
   const muscleColor = MUSCLE_CONFIGS[muscle] || "bg-gray-500";
   const muscleTitle = t(("workout_builder.muscles." + muscle.toLowerCase()) as keyof typeof t);
 

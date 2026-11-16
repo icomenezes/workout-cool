@@ -714,6 +714,14 @@ export default {
         label: "配重片",
         description: "使用配重片的练习",
       },
+      machine: {
+        label: "器械",
+        description: "带配重片的健身器械",
+      },
+      cable: {
+        label: "拉力器",
+        description: "绳索/滑轮器械练习",
+      },
       pullup_bar: {
         label: "引体向上杆",
         description: "使用引体向上杆的上半身练习",

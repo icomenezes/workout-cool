@@ -1644,6 +1644,14 @@ export default {
         label: "Placa",
         description: "Exercícios usando discos de peso",
       },
+      machine: {
+        label: "Máquina",
+        description: "Aparelhos de musculação com pilha de pesos",
+      },
+      cable: {
+        label: "Cabo / Polia",
+        description: "Exercícios na polia (crossover, puxador, etc.)",
+      },
       pullup_bar: {
         label: "Barra de barra fixa",
         description: "Exercícios para a parte superior do corpo com barra fixa",

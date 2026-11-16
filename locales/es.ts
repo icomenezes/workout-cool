@@ -718,6 +718,14 @@ export default {
         label: "Discos",
         description: "Ejercicios usando discos de peso",
       },
+      machine: {
+        label: "Máquina",
+        description: "Máquinas de gimnasio con pila de pesas",
+      },
+      cable: {
+        label: "Polea",
+        description: "Ejercicios en polea",
+      },
       pullup_bar: {
         label: "Barra de dominadas",
         description: "Ejercicios del tren superior con barra de dominadas",

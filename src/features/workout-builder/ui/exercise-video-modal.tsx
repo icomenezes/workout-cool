@@ -34,9 +34,9 @@ export function ExerciseVideoModal({ open, onOpenChange, exercise, defaultTab = 
     if (open) setActiveTab(defaultTab);
   }, [open, defaultTab]);
 
-  const title = locale === "fr" ? exercise.name : exercise.nameEn || exercise.name;
-  const introduction = locale === "fr" ? exercise.introduction : exercise.introductionEn || exercise.introduction;
-  const description = locale === "fr" ? exercise.description : exercise.descriptionEn || exercise.description;
+  const title = locale !== "en" ? exercise.name : exercise.nameEn || exercise.name;
+  const introduction = locale !== "en" ? exercise.introduction : exercise.introductionEn || exercise.introduction;
+  const description = locale !== "en" ? exercise.description : exercise.descriptionEn || exercise.description;
   const videoUrl = exercise.fullVideoUrl;
   const youTubeEmbedUrl = getYouTubeEmbedUrl(videoUrl ?? "");
 
